@@ -48,8 +48,10 @@ A **Laravel 10 API-driven service** for managing translations across multiple lo
     -   Explicit `belongsToMany` and `hasMany` relations for clarity and performance.
     -   Resource classes used selectively to balance readability and response speed.
 
--   **Authentication** - Token-based API authentication using Laravel Sanctum. - `login` and `logout` endpoints provided.
-    > **Test User Info:**<br>email: test_user@tms.com<br>password: 12345678
+-   **Authentication**
+    -   Token-based API authentication using Laravel Sanctum.
+    -   `login` and `logout` endpoints provided.
+        > **Test User Info:**<br>email: test_user@tms.com<br>password: 12345678
 
 ---
 
