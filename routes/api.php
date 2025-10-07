@@ -23,13 +23,18 @@ Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logou
 
 Route::middleware('auth:sanctum')->group(function () {
 
-Route::get("locales",LocalesController::class);
-Route::get("tags",TagsController::class);
-Route::prefix("translations")->group(function(){
-    Route::get("export/{tag}/{locale?}",[TranslationsController::class,"export"]);
-    Route::get("/",[TranslationsController::class,"index"]);
-    Route::post("/",[TranslationsController::class,"create"]);
-    Route::put("/{content}",[TranslationsController::class,"update"]);
-});
+    Route::get("tags",TagsController::class);
+
+    Route::prefix("locales")->group(function(){
+        Route::get("/",[LocalesController::class,"index"]);
+        Route::post("/",[LocalesController::class,"store"]);
+    }); 
+
+    Route::prefix("translations")->group(function(){
+        Route::get("export/{tag}/{locale?}",[TranslationsController::class,"export"]);
+        Route::get("/",[TranslationsController::class,"index"]);
+        Route::post("/",[TranslationsController::class,"create"]);
+        Route::put("/{content}",[TranslationsController::class,"update"]);
+    });
 });
 

@@ -24,9 +24,12 @@ class ContentSeeder extends Seeder
         $total_contents = 33_333;// ~33k
         $batch_size = 1000;
 
+        $command = $this->command;
+        $progress = $command->getOutput()->createProgressBar($total_contents/$batch_size);
+        $progress->start();
         LazyCollection::times($total_contents)
         ->chunk($batch_size)
-        ->each(function($chunk) use ($locales,$tags){
+        ->each(function($chunk) use ($locales,$tags,$progress){
             $contents = [];
             $now = now();
             $keyPrefixes = ['dashboard', 'auth', 'profile', 'settings', 'system', 'user'];
@@ -67,7 +70,9 @@ class ContentSeeder extends Seeder
 
             ContentTranslation::insert($content_translations);
             ContentTag::insert($content_tags);
-            echo "Inserted batch of " . count($chunk) . " contents with translations and tags" . PHP_EOL;
+            $progress->advance();
+            // echo "Inserted batch of " . count($chunk) . " contents with translations and tags" . PHP_EOL;
         });
+        $progress->finish();
     }
 }
