@@ -15,6 +15,13 @@ A **Laravel 10 API-driven service** for managing translations across multiple lo
 -   OpenAPI documentation auto-generated with Scramble.
 -   PHPUnit & Pest testing of critical features.
 
+## Locale Management
+
+-   Locales are stored in the `locales` table with `code` (e.g., `en`, `fr`, `es`) and `name` fields.
+-   New locales can be added via the `/api/locales` POST route.
+-   Each translation references a `locale_id` for efficient lookups.
+-   This ensures the system can scale to new languages without schema changes.
+
 ---
 
 ## **Technical Highlights**
@@ -41,9 +48,8 @@ A **Laravel 10 API-driven service** for managing translations across multiple lo
     -   Explicit `belongsToMany` and `hasMany` relations for clarity and performance.
     -   Resource classes used selectively to balance readability and response speed.
 
--   **Authentication**
-    -   Token-based API authentication using Laravel Sanctum.
-    -   `login` and `logout` endpoints provided.
+-   **Authentication** - Token-based API authentication using Laravel Sanctum. - `login` and `logout` endpoints provided.
+    > **Test User Info:**<br>email: test_user@tms.com<br>password: 12345678
 
 ---
 
@@ -102,6 +108,7 @@ php artisan test
 | `/api/translations/{content}`              | PUT    | Update a translation set                                          | Yes  |
 | `/api/translations/export/{tag}/{locale?}` | GET    | Export translations in JSON format for frontend                   | Yes  |
 | `/api/locales`                             | GET    | List all locales                                                  | Yes  |
+| `/api/locales`                             | POST   | Create (add) a new locale                                         | Yes  |
 | `/api/tags`                                | GET    | List all tags                                                     | Yes  |
 | `/api/auth/login`                          | POST   | Login and receive API token                                       | No   |
 | `/api/auth/logout`                         | POST   | Revoke API token                                                  | Yes  |

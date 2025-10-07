@@ -13,16 +13,32 @@ class LocalesControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void {
+        parent::setUp();
+        $user = User::factory()->create();
+        Sanctum::actingAs($user,["*"]);
+        $this->seed(LocaleSeeder::class);
+    }
+
     /** @test */
     public function it_returns_all_locales()
     {
-        $user = User::factory()->create();
-        Sanctum::actingAs($user);
-        $this->seed(LocaleSeeder::class);
-
         $response = $this->getJson('/api/locales');
-
         $response->assertOk()
                  ->assertJsonStructure([['id', 'code', 'name']]);
     }
+
+    /** @test */
+    public function it_creates_a_locale(){
+        $payload = [
+            "name"=> "Urdu",
+            "code" => "ur"
+        ];
+
+        $response = $this->postJson("/api/locales",$payload);
+        $response->assertOk()->assertJsonStructure(["id","code","name"]);
+        $this->assertDatabaseHas("locales",["code"=>$payload["code"]]);
+        $this->assertDatabaseCount("locales",4);
+    }
+    
 }

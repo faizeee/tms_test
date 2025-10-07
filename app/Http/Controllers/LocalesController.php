@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveLocaleRequest;
 use App\Models\Locale;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 /**
  * @group Locales
  *
- * API for retrieving available locales.
+ * API for managing locales.
  */
 class LocalesController extends Controller
 {
@@ -20,16 +20,35 @@ class LocalesController extends Controller
      * Returns all supported locales ordered by name.  
      * Each locale contains its `id`, `code`, and `name`.
      * @authenticated
-     * @response 200 [
-     *   { "id": 1, "code": "en", "name": "English" },
-     *   { "id": 2, "code": "fr", "name": "French" },
-     *   { "id": 3, "code": "es", "name": "Spanish" }
-     * ]
+     * @response 200 []
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke():JsonResponse{
+    public function index():JsonResponse{
         $locales = Locale::orderBy("name")->get(['id', 'code', 'name']);
         return response()->json($locales);
+    }
+
+    /**
+     * Create a new Locale.
+     *
+     * Accepts a locale `code` and `name`.
+     *
+     * @authenticated
+     * @bodyParam code string required Unique locale code. Example: en, fr, es
+     * @bodyParam name string required Descriptive name for locale. Example: English
+     *
+     * @response 201 {
+     *   "id": 3,
+     *   "code": "es",
+     *   "name": "Spanish"
+     * }
+     * 
+     * @param \App\Http\Requests\SaveLocaleRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(SaveLocaleRequest $request): JsonResponse {
+        $locale = Locale::create($request->validated());
+        return response()->json($locale->only(['id', 'code', 'name']));
     }
 }
