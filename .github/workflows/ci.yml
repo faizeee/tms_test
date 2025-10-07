@@ -89,9 +89,3 @@ jobs:
           flags: tms-backend
           name: tms-backend-tests
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Debug print DB URL
-        working-directory: backend
-        run: |
-          echo "Loaded DB URL: $DATABASE_URL"
-          cat .env
