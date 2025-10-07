@@ -56,11 +56,6 @@ jobs:
           extensions: mbstring, pdo, mysql, xml, ctype, json, tokenizer, bcmath, dom, fileinfo
           coverage: xdebug
 
-      - name: Copy .env file
-        run: |
-          cp .env.test .env || echo "No .env.test found, using default env"
-          php artisan key:generate
-
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
@@ -71,6 +66,11 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Copy .env file
+        run: |
+          cp .env.test .env || echo "No .env.test found, using default env"
+          php artisan key:generate
 
       - name: Clean test database schema
         run: |
