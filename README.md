@@ -1,5 +1,8 @@
 # Translation Management Service (TMS)
 
+![CI](https://github.com/faizeee/tms_test/actions/workflows/ci.yml/badge.svg)
+[![Backend Coverage](https://codecov.io/gh/faizeee/tms_test/branch/main/graph/badge.svg?flag=tms-backend)]
+
 A **Laravel 10 API-driven service** for managing translations across multiple locales with contextual tagging. Built for scalability, performance, and developer usability.
 
 ---
@@ -15,7 +18,7 @@ A **Laravel 10 API-driven service** for managing translations across multiple lo
 -   OpenAPI documentation auto-generated with Scramble.
 -   PHPUnit & Pest testing of critical features.
 
-## Locale Management
+#### Locale Management
 
 -   Locales are stored in the `locales` table with `code` (e.g., `en`, `fr`, `es`) and `name` fields.
 -   New locales can be added via the `/api/locales` POST route.
@@ -51,7 +54,8 @@ A **Laravel 10 API-driven service** for managing translations across multiple lo
 -   **Authentication**
     -   Token-based API authentication using Laravel Sanctum.
     -   `login` and `logout` endpoints provided.
-        > **Test User Info:**<br>email: test_user@tms.com<br>password: 12345678
+
+> **Test User Info:**<br>email: test_user@tms.com<br>password: 12345678
 
 ---
 
