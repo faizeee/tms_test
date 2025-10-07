@@ -13,6 +13,11 @@
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property string $key
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Locale> $locales
  * @property-read int|null $locales_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
@@ -23,6 +28,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Content newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Content newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Content query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Content whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Content whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Content whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Content whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Content whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Content extends \Eloquent {}
 }

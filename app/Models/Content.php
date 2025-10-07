@@ -35,10 +35,10 @@ class Content extends Model
 
     protected $fillable = ['key','content'];
 
-    public function locales(){
-        return $this->belongsToMany(Locale::class,'content_translations','content_id','locale_id')
-        ->withPivot(columns: ['translation']);
-    }
+    // public function locales(){
+    //     return $this->belongsToMany(Locale::class,'content_translations','content_id','locale_id')
+    //     ->withPivot(columns: ['translation']);
+    // }
 
     public function translations(){
         return $this->hasMany(ContentTranslation::class,'content_id');

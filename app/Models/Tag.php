@@ -27,7 +27,7 @@ class Tag extends Model
 
     protected $fillable = ['name'];
 
-    public function contents(){
-        return $this->belongsToMany(Content::class,'content_tags','tag_id','content_id');
-    }
+    // public function contents(){
+    //     return $this->belongsToMany(Content::class,'content_tags','tag_id','content_id');
+    // }
 }
