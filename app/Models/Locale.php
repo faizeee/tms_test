@@ -30,12 +30,12 @@ class Locale extends Model
     use HasFactory;
     protected $fillable = ['code','name'];
 
-    public function contents(){
-        return $this->belongsToMany(Content::class,'content_translations','locale_id','content_id')
-        ->withPivot(['translation']);
-    }
+    // public function contents(){
+    //     return $this->belongsToMany(Content::class,'content_translations','locale_id','content_id')
+    //     ->withPivot(['translation']);
+    // }
 
-    public function translations(){
-        return $this->hasMany(ContentTranslation::class,'locale_id');
-    }
+    // public function translations(){
+    //     return $this->hasMany(ContentTranslation::class,'locale_id');
+    // }
 }

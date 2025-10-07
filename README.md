@@ -1,7 +1,7 @@
 # Translation Management Service (TMS)
 
 ![CI](https://github.com/faizeee/tms_test/actions/workflows/ci.yml/badge.svg)
-[![Backend Coverage](https://codecov.io/gh/faizeee/tms_test/branch/main/graph/badge.svg?flag=tms-backend)]
+![Backend Coverage](https://codecov.io/gh/faizeee/tms_test/branch/main/graph/badge.svg?flag=tms-backend)
 
 A **Laravel 10 API-driven service** for managing translations across multiple locales with contextual tagging. Built for scalability, performance, and developer usability.
 
