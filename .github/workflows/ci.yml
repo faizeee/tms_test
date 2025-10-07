@@ -1,4 +1,4 @@
-name: CI - TMS Tests & Coverage
+name: CI
 
 on:
   push:
