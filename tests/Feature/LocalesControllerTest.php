@@ -16,7 +16,7 @@ class LocalesControllerTest extends TestCase
     protected function setUp(): void {
         parent::setUp();
         $user = User::factory()->create();
-        Sanctum::actingAs($user);
+        Sanctum::actingAs($user,["*"]);
         $this->seed(LocaleSeeder::class);
     }
 

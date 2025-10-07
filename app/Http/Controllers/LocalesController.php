@@ -38,6 +38,12 @@ class LocalesController extends Controller
      * @bodyParam code string required Unique locale code. Example: en, fr, es
      * @bodyParam name string required Descriptive name for locale. Example: English
      *
+     * @response 201 {
+     *   "id": 3,
+     *   "code": "es",
+     *   "name": "Spanish"
+     * }
+     * 
      * @param \App\Http\Requests\SaveLocaleRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
